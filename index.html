@@ -1,140 +1,467 @@
-
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raphael Bouskila · QA Engineer</title>
+<meta name="description" content="Raphael Bouskila, QA Engineer in training, Practical Electrical Engineering graduate.">
 
-    <title>Raphael Bouskila - Personal Resume Website</title>
+<style>
+  :root{
+    --bg:        #102A43;
+    --panel:     #16344F;
+    --line:      #234563;
+    --copper:    #C98A4B;
+    --copper-dim:#8A6238;
+    --verify:    #4FBE8C;
+    --text:      #F5F5F5;
+    --muted:     #9FB3C8;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --maxw: 900px;
+    --rail: 46px;
+  }
 
-    <style>
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
 
-        body {
-            background-color: #102A43;
-            font-family: Arial, Helvetica, sans-serif;
-            color: #F5F5F5;
-            margin: 40px;
-        }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
 
-        h1 {
-            color: #66B3FF;
-            font-size: 46px;
-            margin-bottom: 5px;
-        }
+  a{ color:var(--copper); }
 
-        h2 {
-            color: #7DCBFF;
-            margin-top: 35px;
-            font-size: 30px;
-        }
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 24px;
+  }
 
-        p {
-            line-height: 1.7;
-            width: 700px;
-            font-size: 18px;
-        }
+  .topbar{
+    border-bottom:1px solid var(--line);
+    background:rgba(16,42,67,0.85);
+    backdrop-filter:blur(8px);
+    position:sticky;
+    top:0;
+    z-index:50;
+  }
+  .topbar-inner{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:16px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+  }
+  .mark{
+    font-family:var(--font);
+    font-size:13px;
+    letter-spacing:0.03em;
+    color:var(--muted);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    white-space:nowrap;
+  }
+  .mark .led{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--verify);
+    box-shadow:0 0 6px var(--verify);
+    flex-shrink:0;
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
 
-        ul {
-            width: 700px;
-            line-height: 1.8;
-            font-size: 18px;
-        }
+  nav.tabs{
+    display:flex;
+    gap:2px;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  nav.tabs::-webkit-scrollbar{ display:none; }
+  nav.tabs a{
+    font-family:var(--font);
+    font-size:13px;
+    color:var(--muted);
+    text-decoration:none;
+    white-space:nowrap;
+    padding:7px 12px;
+    border-radius:3px;
+    border:1px solid transparent;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  nav.tabs a:hover, nav.tabs a:focus-visible{
+    color:var(--text);
+    border-color:var(--line);
+    outline:none;
+  }
 
-        .profile-picture {
-            width: 340px;
-            border-radius: 50%;
-            border: 10px solid #0F0018;
-            margin-top: 90px;
-        }
+  .hero{
+    padding:76px 0 60px;
+    display:grid;
+    grid-template-columns:1.25fr 0.85fr;
+    gap:44px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:var(--font);
+    font-size:13px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--copper);
+    margin:0 0 18px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background:var(--copper);
+    display:inline-block;
+  }
 
-        .circuit-picture {
-            width: 550px;
-            border: 10px solid #0F0018;
-            border-radius: 20px;
-            margin-top: 40px;
-        }
+  h1{
+    font-family:var(--font);
+    font-weight:600;
+    font-size:clamp(30px, 4.6vw, 48px);
+    line-height:1.1;
+    margin:0 0 14px;
+    letter-spacing:-0.01em;
+  }
 
-    </style>
+  .role{
+    font-family:var(--font);
+    font-weight:500;
+    font-size:16px;
+    color:var(--muted);
+    margin:0 0 22px;
+  }
 
+  .lede{
+    max-width:56ch;
+    color:#D7E1EC;
+    font-size:16px;
+  }
+
+  .hero-actions{
+    margin-top:30px;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:var(--font);
+    font-size:14px;
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:4px;
+    border:1px solid var(--line);
+    color:var(--text);
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .btn:hover{ border-color:var(--copper); }
+  .btn.primary{ background:var(--copper); color:#1A1006; border-color:var(--copper); font-weight:600; }
+  .btn.primary:hover{ background:#D89A5C; }
+
+  .hero-photo{
+    justify-self:center;
+    position:relative;
+  }
+  .chip-frame{
+    width:min(240px, 62vw);
+    aspect-ratio:1/1;
+    position:relative;
+  }
+  .chip-frame img{
+    width:100%; height:100%;
+    object-fit:cover;
+    clip-path: polygon(12% 0%, 88% 0%, 100% 12%, 100% 88%, 88% 100%, 12% 100%, 0% 88%, 0% 12%);
+    display:block;
+  }
+  .chip-frame::before{
+    content:"";
+    position:absolute;
+    inset:-10px;
+    clip-path: polygon(12% 0%, 88% 0%, 100% 12%, 100% 88%, 88% 100%, 12% 100%, 0% 88%, 0% 12%);
+    border:1px solid var(--copper-dim);
+    pointer-events:none;
+  }
+  .chip-frame::after{
+    content:"";
+    position:absolute;
+    inset:-10px;
+    background-image:
+      repeating-linear-gradient(to right, var(--copper-dim) 0 2px, transparent 2px 22px);
+    background-position: top left, bottom left;
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+    opacity:.5;
+  }
+
+  .log{
+    position:relative;
+    padding-left:0;
+  }
+  .log::before{
+    content:"";
+    position:absolute;
+    left:var(--rail);
+    top:14px;
+    bottom:14px;
+    width:1px;
+    background:repeating-linear-gradient(to bottom, var(--copper-dim) 0 6px, transparent 6px 12px);
+  }
+
+  section.case{
+    position:relative;
+    padding:38px 0 38px calc(var(--rail) + 34px);
+    border-top:1px solid var(--line);
+    opacity:0;
+    transform:translateY(12px);
+    transition:opacity .5s ease, transform .5s ease;
+  }
+  section.case.in-view{ opacity:1; transform:translateY(0); }
+  section.case:first-child{ border-top:none; }
+
+  .tp{
+    position:absolute;
+    left:calc(var(--rail) - 6px);
+    top:6px;
+    width:13px; height:13px;
+    border-radius:50%;
+    background:var(--bg);
+    border:2px solid var(--verify);
+  }
+  .tp::after{
+    content:"";
+    position:absolute;
+    inset:3px;
+    border-radius:50%;
+    background:var(--verify);
+  }
+
+  .case h2{
+    font-family:var(--font);
+    font-weight:600;
+    font-size:clamp(19px, 2.6vw, 24px);
+    margin:0 0 14px;
+    color:var(--text);
+  }
+
+  .case p{ margin:0 0 14px; max-width:66ch; color:#D7E1EC; }
+  .case p:last-child{ margin-bottom:0; }
+
+  .assert-list{ list-style:none; margin:0; padding:0; }
+  .assert-list li{
+    font-size:15px;
+    color:#D7E1EC;
+    padding:10px 0;
+    border-bottom:1px dashed var(--line);
+  }
+  .assert-list li:last-child{ border-bottom:none; }
+  .assert-list strong{ color:var(--text); }
+  .assert-list .tag{
+    font-family:var(--font);
+    font-size:12px;
+    color:var(--copper);
+    margin-right:8px;
+  }
+
+  .skill-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:10px;
+  }
+  .skill-chip{
+    font-size:14px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:2px solid var(--copper);
+    padding:12px 14px;
+    color:#D7E1EC;
+  }
+
+  .contact-panel p{ margin:0 0 18px; color:#D7E1EC; }
+  .contact-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .contact-row a{
+    font-family:var(--font);
+    font-size:14px;
+    text-decoration:none;
+    color:var(--text);
+    background:var(--panel);
+    border:1px solid var(--line);
+    padding:11px 16px;
+    border-radius:4px;
+    transition:border-color .15s ease;
+  }
+  .contact-row a:hover{ border-color:var(--copper); }
+
+  footer{
+    padding:30px 0 60px calc(var(--rail) + 34px);
+    font-family:var(--font);
+    font-size:13px;
+    color:var(--muted);
+    border-top:1px solid var(--line);
+    margin-top:6px;
+  }
+  footer .sum{ color:var(--verify); }
+
+  @media (max-width:760px){
+    .hero{ grid-template-columns:1fr; padding-top:48px; }
+    .hero-photo{ order:-1; }
+    :root{ --rail: 0px; }
+    .log::before{ display:none; }
+    .tp{ display:none; }
+    section.case{ padding-left:0; }
+    footer{ padding-left:0; }
+    .mark span:last-child{ display:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+    section.case{ opacity:1; transform:none; }
+  }
+</style>
 </head>
-
 <body>
 
-<table width="100%">
-<tr>
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="mark"><span class="led"></span><span>R. BOUSKILA · SIGNAL VERIFIED</span></div>
+    <nav class="tabs" aria-label="Section navigation">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</div>
 
-<td width="65%" valign="top">
+<main class="wrap">
 
-<h1>Raphael Bouskila</h1>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">QA Engineer · Electrical Engineering Background</p>
+      <h1>Raphael Bouskila</h1>
+      <p class="role">Practical Electrical Engineering Graduate, currently training as a QA Engineer</p>
+      <p class="lede">
+        I come from circuits, not just code. Electrical engineering taught me to trace
+        a fault to its source before trusting a fix: a test point, a measurement, a
+        confirmed result. I bring that same discipline to software, reading the spec
+        closely, expecting the edge case, and not signing off until it actually holds.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="mailto:RaphaelBouskila148@gmail.com">Get in touch</a>
+        <a class="btn" href="#experience">See my background</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="chip-frame">
+        <img src="raphael.jpeg.png" alt="Portrait of Raphael Bouskila">
+      </div>
+    </div>
+  </section>
 
-<p>
-QA Engineer Student | Practical Electrical Engineering Graduate
-</p>
+  <div class="log">
 
-<h2>About Me</h2>
+    <section class="case" id="about">
+      <span class="tp" aria-hidden="true"></span>
+      <h2>About Me</h2>
+      <p>
+        Hello! My name is Raphael Bouskila. I'm currently learning web development
+        and hold a degree in Practical Electrical Engineering. I'm fluent in Hebrew,
+        English, and Spanish, and I'm currently studying to become a QA Engineer.
+      </p>
+    </section>
 
-<p>
-Hello! My name is Raphael Bouskila. I am currently learning web
-development and have a degree in Practical Electrical Engineering.
-I am fluent in Hebrew, English, and Spanish, and I am currently
-studying to become a QA Engineer.
-</p>
+    <section class="case" id="experience">
+      <span class="tp" aria-hidden="true"></span>
+      <h2>Professional Summary</h2>
+      <p>
+        I made aliyah from the United States 10 years ago and have been working
+        for the city of Harish for the last 5 years while completing my degree in
+        Practical Electrical Engineering. I've spent my life working in both tech
+        sales and physical labor, whether that meant leading sales teams toward
+        their targets or rolling up my sleeves to solve a problem with my own hands.
+      </p>
+      <p>
+        I'm proficient in QuickBooks bookkeeping and fluent in sales and marketing.
+        I'm a hard worker, a fast learner, and a team player, and I bring that same
+        hands-on, root-cause mindset to testing software.
+      </p>
+    </section>
 
-<h2>Professional Summary</h2>
+    <section class="case" id="education">
+      <span class="tp" aria-hidden="true"></span>
+      <h2>Education</h2>
+      <ul class="assert-list">
+        <li><span class="tag">2024-2027</span><strong>Michlelet Etgar, Haifa:</strong> Practical Electrical Engineering</li>
+        <li><span class="tag">2026-2027</span><strong>Gal Matalon:</strong> QA Engineering Course</li>
+      </ul>
+    </section>
 
-<p>
-I made aliyah from the United States of America 10 years ago and
-have been working for the city of Harish for the last 5 years while
-completing my degree in Practical Electrical Engineering.
-I have worked my entire life in both tech sales and the physical labor fields. Weather be it leading sales
- teams to acheiving goals and conventions for clients or practically rolling up my sleeves and putting 
- both braon and body to work to solve any obstacle put in our path.
- I am proficient in quickbooks bookkeeping as well as fluent in Sales and Marketing.
-I am a hard worker, a fast learner, and a team player.
-</p>
+    <section class="case" id="skills">
+      <span class="tp" aria-hidden="true"></span>
+      <h2>Skills</h2>
+      <div class="skill-grid">
+        <div class="skill-chip">Fluent in English, Hebrew &amp; Spanish</div>
+        <div class="skill-chip">Conversational French</div>
+        <div class="skill-chip">Team and floor management: sales, service, bookkeeping</div>
+        <div class="skill-chip">Team player</div>
+        <div class="skill-chip">Problem solving, outside the box thinking</div>
+      </div>
+    </section>
 
-<h2>Education</h2>
+    <section class="case" id="contact">
+      <span class="tp" aria-hidden="true"></span>
+      <h2>Contact</h2>
+      <div class="contact-panel">
+        <p>Ready for the next assignment. Reach out any time.</p>
+        <div class="contact-row">
+          <a href="mailto:RaphaelBouskila148@gmail.com">RaphaelBouskila148@gmail.com</a>
+          <a href="tel:+972547746253">054-774-6253</a>
+        </div>
+      </div>
+    </section>
 
-<ul>
-<li><strong>Michlelet Etgar, Haifa</strong> - Practical Electrical Engineering 2024-2027</li>
-<li><strong>Gal Matalon</strong> - QA Engineering Course 2026-2027</li>
-</ul>
+  </div>
 
-<h2>Skills</h2>
+  <footer>
+    <span class="sum">Built the way I test: thorough, verified, ready.</span><br>
+    &copy; <span id="year"></span> Raphael Bouskila
+  </footer>
 
-<ul>
-<li>Fluent in English, Hebrew, and Spanish</li>
-<li>Conversational French</li>
-<li>Managed teams and floors in sales, customer service, and bookkeeping</li>
-<li>Team player</li>
-<li>Problem solving and thinking outside the box</li>
-</ul>
+</main>
 
-<h2>Contact</h2>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-<p>
-<strong>
-<li>Email:</strong> RaphaelBouskila148@gmail.com</li>
-<li> <strong>Phone Number:</strong>  054-774-6253</li>
-</p>
-
-</td>
-
-<td width="35%" valign="top" align="center">
-
-<img src="raphael.jpeg.png"
-     alt="Raphael Bouskila"
-     class="profile-picture">
-
-<br><br><br>
-
-<img src="raphael2.jpg"
-     alt="Embedded Systems"
-     class="circuit-picture">
-
-</td>
-
-</tr>
-</table>
+  const cases = document.querySelectorAll('section.case');
+  if ('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('in-view');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    cases.forEach(c=>io.observe(c));
+  } else {
+    cases.forEach(c=>c.classList.add('in-view'));
+  }
+</script>
 
 </body>
-
 </html>
