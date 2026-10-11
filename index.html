@@ -287,6 +287,36 @@
     color:#D7E1EC;
   }
 
+  .project-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+    gap:14px;
+  }
+  .project-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-top:2px solid var(--copper);
+    padding:18px 18px 16px;
+    display:flex;
+    flex-direction:column;
+  }
+  .project-card h3{ margin:0 0 4px; font-size:16px; font-weight:600; color:var(--text); }
+  .project-card .kind{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--copper); margin:0 0 10px; }
+  .project-card p{ font-size:14px; margin:0 0 14px; }
+  .project-card .tools{ font-size:12px; color:var(--muted); margin:0 0 14px; }
+  .project-card a.open{
+    margin-top:auto;
+    align-self:flex-start;
+    font-size:14px;
+    text-decoration:none;
+    color:var(--text);
+    border:1px solid var(--line);
+    padding:9px 14px;
+    border-radius:4px;
+    transition:border-color .15s ease;
+  }
+  .project-card a.open:hover{ border-color:var(--copper); }
+
   .contact-panel p{ margin:0 0 18px; color:#D7E1EC; }
   .contact-row{
     display:flex;
@@ -340,6 +370,7 @@
     <div class="mark"><span class="led"></span><span>R. BOUSKILA · SIGNAL VERIFIED</span></div>
     <nav class="tabs" aria-label="Section navigation">
       <a href="#about">About</a>
+      <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
       <a href="#education">Education</a>
       <a href="#skills">Skills</a>
@@ -363,12 +394,12 @@
       </p>
       <div class="hero-actions">
         <a class="btn primary" href="mailto:RaphaelBouskila148@gmail.com">Get in touch</a>
-        <a class="btn" href="#experience">See my background</a>
+        <a class="btn" href="#projects">See my projects</a>
       </div>
     </div>
     <div class="hero-photo">
       <div class="chip-frame">
-        <img src="newraphaelqa.png" alt="Portrait of Raphael Bouskila">
+        <img src="raphael-portrait.jpg" width="800" height="800" alt="Portrait of Raphael Bouskila">
       </div>
     </div>
   </section>
@@ -383,6 +414,38 @@
         and hold a degree in Practical Electrical Engineering. I'm fluent in Hebrew,
         English, and Spanish, and I'm currently studying to become a QA Engineer.
       </p>
+    </section>
+
+    <section class="case" id="projects">
+      <span class="tp" aria-hidden="true"></span>
+      <h2>Projects</h2>
+      <div class="project-grid">
+
+        <article class="project-card">
+          <h3>BrewDog USA website</h3>
+          <p class="kind">Software Test Report (STR)</p>
+          <p>Full test cycle on the brewery's official marketing site: test planning, execution, bug reporting and a final summary report.</p>
+          <p class="tools">Jira · TestRail · STP / STD / STR</p>
+          <a class="open" href="brewdog-str.pdf" target="_blank" rel="noopener">Open the report (PDF)</a>
+        </article>
+
+        <article class="project-card">
+          <h3>Spotify Android app</h3>
+          <p class="kind">Mobile Test Report (STR)</p>
+          <p>Hands-on mobile testing of the Spotify app, including a critical bug found, documented and reported.</p>
+          <p class="tools">Android · Jira · TestRail</p>
+          <a class="open" href="spotify-android-str.pdf" target="_blank" rel="noopener">Open the report (PDF)</a>
+        </article>
+
+        <article class="project-card">
+          <h3>This website</h3>
+          <p class="kind">HTML · CSS</p>
+          <p>Personal site built with HTML and CSS, version-controlled with Git and published on GitHub Pages.</p>
+          <p class="tools">HTML · CSS · Git · GitHub Pages</p>
+          <a class="open" href="https://github.com/raphaelbouskila148-code/raphael-QA-HTML1" target="_blank" rel="noopener">View the source code</a>
+        </article>
+
+      </div>
     </section>
 
     <section class="case" id="experience">
