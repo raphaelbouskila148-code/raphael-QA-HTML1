@@ -316,6 +316,9 @@
     transition:border-color .15s ease;
   }
   .project-card a.open:hover{ border-color:var(--copper); }
+  .project-card .links{ margin-top:auto; display:flex; flex-wrap:wrap; gap:8px; }
+  .project-card .links a.open{ margin-top:0; }
+  .project-card.featured{ grid-column:1 / -1; }
 
   .contact-panel p{ margin:0 0 18px; color:#D7E1EC; }
   .contact-row{
@@ -383,7 +386,7 @@
 
   <section class="hero">
     <div>
-      <p class="eyebrow">QA Engineer · Electrical Engineering Background</p>
+      <p class="eyebrow">Junior QA Automation Engineer · Electrical Engineering Background</p>
       <h1>Raphael Bouskila</h1>
       <p class="role">QA Engineer with a Practical Electrical Engineering background</p>
       <p class="lede">
@@ -411,7 +414,7 @@
       <h2>About Me</h2>
       <p>
         Hello! My name is Raphael Bouskila. I'm a QA Engineer trained in manual
-        testing and now studying test automation, alongside completing a diploma in
+        testing and now building test automation in Python and Playwright, alongside completing a diploma in
         Practical Electrical Engineering. I'm fluent in Hebrew, English, and Spanish.
       </p>
     </section>
@@ -420,6 +423,17 @@
       <span class="tp" aria-hidden="true"></span>
       <h2>Projects</h2>
       <div class="project-grid">
+
+        <article class="project-card featured">
+          <h3>BrewDog USA test automation</h3>
+          <p class="kind">Python · Playwright · CI/CD</p>
+          <p>The next step after my manual testing of the BrewDog store: 26 automated UI tests covering the age gate, shop categories, product pages, search, cart, footer links and mobile layout. A GitHub Actions pipeline runs them on Chromium, Firefox and WebKit on every change and every week, and publishes the results as a live report. The first runs uncovered three real issues on the live site, including a search results page that crashes, now tracked as known-issue tests.</p>
+          <p class="tools">Python · Playwright · pytest · Page Object Model · GitHub Actions</p>
+          <div class="links">
+            <a class="open" href="https://raphaelbouskila148-code.github.io/brewdog-playwright-tests/" target="_blank" rel="noopener">Open the live test report</a>
+            <a class="open" href="https://github.com/raphaelbouskila148-code/brewdog-playwright-tests" target="_blank" rel="noopener">View the code</a>
+          </div>
+        </article>
 
         <article class="project-card">
           <h3>BrewDog USA website</h3>
@@ -443,6 +457,13 @@
           <p>Personal site built with HTML and CSS, version-controlled with Git and published on GitHub Pages.</p>
           <p class="tools">HTML · CSS · Git · GitHub Pages</p>
           <a class="open" href="https://github.com/raphaelbouskila148-code/raphael-QA-HTML1" target="_blank" rel="noopener">View the source code</a>
+        </article>
+
+        <article class="project-card featured">
+          <h3>AI-assisted QA workflows</h3>
+          <p class="kind">Claude agents · Skills</p>
+          <p>Agent workflows I built with Claude to draft test cases, structure bug reports and assemble STR documents, plus a reusable skill I'm writing to standardize future STRs. The AI speeds up the work; I review every result and reproduce every bug myself.</p>
+          <p class="tools">Claude Code · Custom skills · Agent workflows</p>
         </article>
 
       </div>
@@ -478,6 +499,11 @@
       <span class="tp" aria-hidden="true"></span>
       <h2>Skills</h2>
       <div class="skill-grid">
+        <div class="skill-chip">Test automation: Python, Playwright, pytest, Selenium</div>
+        <div class="skill-chip">CI/CD: GitHub Actions, Git, GitHub</div>
+        <div class="skill-chip">Test management: Jira, TestRail, STP / STD / STR</div>
+        <div class="skill-chip">API &amp; data: Postman, SQL</div>
+        <div class="skill-chip">AI-assisted QA with Claude agents and skills</div>
         <div class="skill-chip">Fluent in English, Hebrew &amp; Spanish</div>
         <div class="skill-chip">Conversational French</div>
         <div class="skill-chip">Team and floor management: sales, service, bookkeeping</div>
