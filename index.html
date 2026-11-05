@@ -316,6 +316,8 @@
     transition:border-color .15s ease;
   }
   .project-card a.open:hover{ border-color:var(--copper); }
+  .project-card a.open.lead{ background:var(--copper); color:#1A1006; border-color:var(--copper); font-weight:600; }
+  .project-card a.open.lead:hover{ background:var(--copper-dim); border-color:var(--copper-dim); }
   .project-card .links{ margin-top:auto; display:flex; flex-wrap:wrap; gap:8px; }
   .project-card .links a.open{ margin-top:0; }
   .project-card.featured{ grid-column:1 / -1; }
@@ -434,6 +436,7 @@
           <p>The next step after my manual testing of the BrewDog store: 37 automated UI tests in 11 test classes and 10 page objects, covering the age gate, shop categories, product pages, search, cart, footer links, sign-in, the newsletter form, changing country, the bar locator and mobile layout. The test data lives in its own file, and every action and value the browser sees is recorded in an Allure report. A GitHub Actions pipeline runs the whole suite on Chromium, Firefox and WebKit on every change and every week, and publishes the report. The automation reproduced two real bugs on the live site, both tracked as known-issue tests.</p>
           <p class="tools">Python · Playwright · pytest · Page Object Model · Data-driven tests · Allure · GitHub Actions</p>
           <div class="links">
+            <a class="open lead" href="https://raphaelbouskila148-code.github.io/brewdog-automation-site/" target="_blank" rel="noopener">Open the project site</a>
             <a class="open" href="https://raphaelbouskila148-code.github.io/brewdog-automation/" target="_blank" rel="noopener">Open the live test report</a>
             <a class="open" href="https://github.com/raphaelbouskila148-code/brewdog-automation" target="_blank" rel="noopener">View the code</a>
           </div>
